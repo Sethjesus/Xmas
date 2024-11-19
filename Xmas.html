@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聖誕賀卡</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .header-message {
+            font-size: 1.5rem;
+            color: white;
+            background-color: #2a7f6f;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            z-index: 10;
+        }
+
+        .card-container {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            overflow: hidden;
+            margin-top: 60px; /* Ensure the header message doesn't overlap with carousel */
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            max-height: 600px;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .message {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            width: 100%;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 2rem;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-message">
+        景沛低碳管理方案團隊祝您聖誕節快樂
+    </div>
+
+    <div class="card-container">
+        <div class="carousel">
+            <!-- 每個圖片和祝賀詞的對應區塊 -->
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M1.jpg?raw=true" alt="聖誕圖1">
+                <p class="message">聖誕節來臨，願你的每一天都充滿喜悅與溫馨。祝你擁有一個美滿幸福的聖誕節，心願成真，平安健康！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M2.jpg?raw=true" alt="聖誕圖2">
+                <p class="message">在這個特別的季節裡，願聖誕的鐘聲帶來無限的祝福，溫暖你的心靈。祝你聖誕快樂，幸福永遠相隨！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M3.jpg?raw=true" alt="聖誕圖3">
+                <p class="message">聖誕是分享愛與歡樂的時刻，願你與摯愛的人一起度過一個快樂、溫馨的聖誕節。祝福你事事如意，心想事成！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M4.jpg?raw=true" alt="聖誕圖4">
+                <p class="message">聖誕的燈火點亮了心中的希望，願這份溫暖與愛意伴隨你走過每一天。祝你擁有一個充滿祝福與幸福的聖誕節！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M5.jpg?raw=true" alt="聖誕圖5">
+                <p class="message">聖誕節是一個傳遞愛與祝福的時刻，願這個聖誕節為你帶來無盡的快樂與幸福，願你在新的一年裡萬事順利！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M6.jpg?raw=true" alt="聖誕圖6">
+                <p class="message">聖誕的鐘聲已經響起，願你在這個冬季裡收穫溫暖與愛。祝你聖誕快樂，幸福安康！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/MA.jpg?raw=true" alt="聖誕圖7">
+                <p class="message">聖誕的時刻，願你在愛的包圍中，擁有無盡的喜悅與快樂。願來年一切都如你所願，心想事成！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/MB.jpg?raw=true" alt="聖誕圖8">
+                <p class="message">聖誕節，是一年中最溫暖的時光。願你在這個季節裡，與家人一起共度難忘的時光，祝你聖誕快樂，心想事成！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/MC.jpg?raw=true" alt="聖誕圖9">
+                <p class="message">聖誕節是愛與祝福的季節，願這份溫馨與祝福伴隨你，帶給你一年四季的快樂與安康！</p>
+            </div>
+            <div class="carousel-item">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/MD.jpg?raw=true" alt="聖誕圖10">
+                <p class="message">在這個特別的時刻，願你與摯愛的人一起共度美好的聖誕夜，願這份愛與喜悅永遠不變。聖誕快樂！</p>
+            </div>
+        </div>
+        <button class="prev">←</button>
+        <button class="next">→</button>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-item');
+        const totalImages = images.length;
+
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+
+        const updateCarousel = () => {
+            const offset = -currentIndex * 100;
+            document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+        };
+
+        // 監聽按鈕點擊事件
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+
+        // 實現觸摸移動
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.card-container').addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.card-container').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+            } else if (touchEndX - touchStartX > 50) {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarousel();
+            }
+        });
+
+        // 自動切換每3秒一次
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        }, 3000);
+
+        updateCarousel(); // 初始顯示第一張圖片
+    </script>
+</body>
+</html>
