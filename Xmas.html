@@ -17,37 +17,25 @@
             flex-direction: column;
         }
 
-        /* Page Transition Styles */
-        .page {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 100%;  /* Start off-screen to the right */
-            opacity: 0;
-            transition: transform 1s ease, opacity 1s ease;
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            left: 10px;
+            width: 250px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            z-index: 10;
+            display: none;
         }
 
-        /* For when page is active */
-        .page.active {
-            left: 0;         /* Slide into view */
-            opacity: 1;      /* Fade in */
+        .sidebar.active {
+            display: block;
         }
 
-        /* Animation for Curtain Effect (Scaling X) */
-        body {
-            transform: scaleX(0);
-            transform-origin: left;
-            opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        body.loaded {
-            transform: scaleX(1);
-            opacity: 1;
-        }
-
-        /* Header Message Styling */
+        /* Header Styling */
         .header-message {
             font-size: 1.5rem;
             color: white;
@@ -55,84 +43,56 @@
             padding: 15px;
             width: 100%;
             text-align: center;
-            position: fixed;  /* Fix it to the top */
-            top: 0;
-            z-index: 10;
-            box-sizing: border-box;
-        }
-
-        /* Sidebar Styling for Messages */
-        .message-sidebar {
             position: fixed;
-            top: 60px;  /* Adjust position below the header */
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            font-size: 1.2rem;
-            text-align: center;
+            top: 0;
             z-index: 20;
         }
 
-        /* Carousel Container */
+        /* Container for Carousel */
         .card-container {
             position: relative;
             width: 100%;
-            height: calc(100vh - 160px);  /* Adjust for header and sidebar height */
+            height: 100vh;
             overflow: hidden;
             display: flex;
-            justify-content: center; /* Center the carousel horizontally */
-            align-items: center; /* Align items vertically */
-            margin-top: 60px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 60px; /* Adjust for header */
         }
 
         /* Carousel Styling */
         .carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
-            width: 100%;  /* Make carousel take the full width of the container */
         }
 
         .carousel-item {
             min-width: 100%;
-            height: 100%; /* Ensure carousel item fills the container */
+            height: 100%;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.3s ease-in-out;
         }
 
         .carousel-item img {
-            width: 80%;  /* Make image fill the full width */
-            height: auto;  /* Keep aspect ratio intact */
-            object-fit: cover; /* Ensure image covers the area while maintaining aspect ratio */
-            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        button {
+        .message {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            font-size: 2rem;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
+            padding: 15px;
+            font-size: 1.2rem;
+            width: 100%;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-sizing: border-box;
         }
 
         /* Footer Styling */
@@ -141,14 +101,9 @@
             background-color: #2a7f6f;
             color: white;
             padding: 20px 10px;
-            position: relative;
+            position: fixed;
+            bottom: 0;
             width: 100%;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-
-        footer p {
-            margin: 0;
         }
 
         /* Footer Link Styling */
@@ -160,7 +115,6 @@
             border-radius: 5px;
             text-decoration: none;
             margin-top: 10px;
-            display: inline-block;
         }
 
         .footer-link:hover {
@@ -174,22 +128,14 @@
                 padding: 10px;
             }
 
-            .message-sidebar {
+            .sidebar {
                 font-size: 1rem;
                 padding: 8px;
+                width: 200px;
             }
 
             .card-container {
                 margin-top: 100px; /* Adjust for header + sidebar */
-            }
-
-            .message-sidebar {
-                height: 60px;
-            }
-
-            button {
-                font-size: 1.5rem;
-                padding: 8px;
             }
 
             .carousel-item img {
@@ -197,74 +143,119 @@
             }
 
             .carousel {
-                width: 100%; /* Allow carousel to use full width on mobile */
+                width: 100%;
             }
 
             .carousel-item {
-                flex-direction: column; /* Stack images and messages vertically on mobile */
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
+
     <!-- Header Message -->
     <div class="header-message">
         UDM景沛低碳管理方案團隊祝您聖誕節快樂
     </div>
 
-    <!-- Sidebar for Messages -->
-    <div class="message-sidebar">
+    <!-- Sidebar for each slide -->
+    <div class="sidebar" id="sidebar1">
         聖誕節來臨，願你的每一天都充滿喜悅與溫馨。祝你擁有一個美滿幸福的聖誕節，心願成真，平安健康！
+    </div>
+    <div class="sidebar" id="sidebar2">
+        祝您幸福美滿，聖誕快樂！
+    </div>
+    <div class="sidebar" id="sidebar3">
+        聖誕老公來碳盤查！願你一起努力低碳環保。
+    </div>
+    <div class="sidebar" id="sidebar4">
+        低碳化政府有補助，讓我們共同努力減碳。
+    </div>
+    <div class="sidebar" id="sidebar5">
+        客製化專案也行，讓我們一起規劃你的減碳方案。
+    </div>
+    <div class="sidebar" id="sidebar6">
+        AI正流行，助你更輕鬆達成減碳目標。
+    </div>
+    <div class="sidebar" id="sidebar7">
+        變頻能效一級棒，提升效率減少浪費。
+    </div>
+    <div class="sidebar" id="sidebar8">
+        空氣品質顧健康，讓我們為您提供空氣監測方案。
+    </div>
+    <div class="sidebar" id="sidebar9">
+        統計與視覺化分析也可以訂製喔，讓數據驅動你的決策。
+    </div>
+    <div class="sidebar" id="sidebar10">
+        國際夥伴一起加入，共同實現全球減碳目標。
+    </div>
+    <div class="sidebar" id="sidebar11">
+        陽光空氣水整合方案，提供全方位的綠色解決方案。
+    </div>
+    <div class="sidebar" id="sidebar12">
+        闔家團圓，與親朋好友共享這個溫馨的聖誕季節！
+    </div>
+    <div class="sidebar" id="sidebar13">
+        聖誕快樂 新年快樂，祝您來年一切順利！
     </div>
 
     <!-- Container for Carousel -->
     <div class="card-container">
         <div class="carousel">
-            <!-- Carousel Items -->
             <div class="carousel-item">
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M1.jpg?raw=true" alt="聖誕圖1">
+                <p class="message">聖誕節到囉！</p>
             </div>
             <div class="carousel-item">
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M2.jpg?raw=true" alt="聖誕圖2">
+                <p class="message">祝您幸福美滿</p>
             </div>
             <div class="carousel-item">
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M3.jpg?raw=true" alt="聖誕圖3">
+                <p class="message">聖誕老公來碳盤查！</p>
             </div>
             <div class="carousel-item">
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M4.jpg?raw=true" alt="聖誕圖4">
+                <p class="message">低碳化政府有補助</p>
             </div>
             <div class="carousel-item">
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M5.jpg?raw=true" alt="聖誕圖5">
+                <p class="message">客製化專案也行</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M6.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M6.jpg?raw=true" alt="聖誕圖6">
+                <p class="message">AI正流行</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M7.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M7.jpg?raw=true" alt="聖誕圖7">
+                <p class="message">變頻能效一級棒</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M8.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M8.jpg?raw=true" alt="聖誕圖8">
+                <p class="message">空氣品質顧健康</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M9.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M9.jpg?raw=true" alt="聖誕圖9">
+                <p class="message">統計與視覺化分析也可以訂製喔</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M10.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M10.jpg?raw=true" alt="聖誕圖10">
+                <p class="message">國際夥伴一起加入</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M11.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M11.jpg?raw=true" alt="聖誕圖11">
+                <p class="message">陽光空氣水整合方案</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M12.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M12.jpg?raw=true" alt="聖誕圖12">
+                <p class="message">闔家團圓</p>
             </div>
             <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M13.jpg?raw=true" alt="聖誕圖1">
+                <img src="https://github.com/Sethjesus/Photo/blob/main/M13.jpg?raw=true" alt="聖誕圖13">
+                <p class="message">聖誕快樂 新年快樂</p>
             </div>
         </div>
-
-        <!-- Navigation buttons -->
-        <button class="prev">←</button>
-        <button class="next">→</button>
     </div>
 
     <!-- Footer -->
@@ -278,35 +269,24 @@
         const images = document.querySelectorAll('.carousel-item');
         const totalImages = images.length;
 
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-
         const updateCarousel = () => {
             const offset = -currentIndex * 100;
             document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+
+            // Toggle sidebar visibility based on the current slide
+            document.querySelectorAll('.sidebar').forEach((sidebar, index) => {
+                sidebar.classList.remove('active');
+                if (index === currentIndex) {
+                    sidebar.classList.add('active');
+                }
+            });
         };
-
-        // Listen for button click events
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalImages;
-            updateCarousel();
-        });
-
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-            updateCarousel();
-        });
 
         // Auto change every 3 seconds
         setInterval(() => {
             currentIndex = (currentIndex + 1) % totalImages;
             updateCarousel();
         }, 3000);
-
-        // Add curtain transition when the page loads
-        window.onload = function() {
-            document.body.classList.add('loaded');
-        };
 
         // Touch Control for Carousel
         let touchStartX = 0;
@@ -326,6 +306,9 @@
                 updateCarousel();
             }
         });
+
+        updateCarousel(); // Initial call to show the first slide
     </script>
+
 </body>
 </html>
