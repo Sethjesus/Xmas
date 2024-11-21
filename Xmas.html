@@ -5,17 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聖誕賀卡</title>
     <style>
+        /* Basic Page Styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            flex-direction: column;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
 
+        /* Page Transition Styles */
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 100%;  /* Start off-screen to the right */
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+        }
+
+        /* For when page is active */
+        .page.active {
+            left: 0;         /* Slide into view */
+            opacity: 1;      /* Fade in */
+        }
+
+        /* Animation for Curtain Effect (Scaling X) */
+        body {
+            transform: scaleX(0);
+            transform-origin: left;
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        body.loaded {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+        /* General Page Content Styling */
         .header-message {
             font-size: 1.5rem;
             color: white;
@@ -29,29 +59,57 @@
             box-sizing: border-box;
         }
 
+        /* Right Top Link Styling */
+        .top-right-link {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            z-index: 20;
+        }
+
+        .top-right-link:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Container for Carousel */
         .card-container {
             position: relative;
             width: 100%;
-            max-width: 1000px;
+            height: 100vh;  /* Ensure it takes up the full viewport height */
             overflow: hidden;
-            margin-top: 60px; /* Ensure the header message doesn't overlap with carousel */
+            margin-top: 60px;
+            display: flex;
+            justify-content: center; /* Center the carousel horizontally */
+            align-items: center; /* Align items vertically */
         }
 
+        /* Carousel Styling */
         .carousel {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            width: 100%;  /* Make carousel take the full width of the container */
         }
 
         .carousel-item {
             min-width: 100%;
-            max-height: 600px;
+            max-height: 100vh;  /* Ensure the height is full screen */
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: transform 0.3s ease-in-out;
         }
 
         .carousel-item img {
-            width: 100%;
-            height: auto;
+            width: 80%;  /* Make image fill the full width */
+            height: 80%;  /* Make image fill the full height */
+            object-fit: cover; /* Ensure image covers the area while maintaining aspect ratio */
             border-radius: 10px;
         }
 
@@ -94,7 +152,7 @@
         }
 
         @media (max-width: 768px) {
-            /* 在手機屏幕上調整大小和佈局 */
+            /* Mobile adjustments */
             .header-message {
                 font-size: 1.2rem;
                 padding: 10px;
@@ -105,11 +163,11 @@
             }
 
             .message {
-                font-size: 1rem; /* 調整文字大小以適應手機螢幕 */
+                font-size: 1rem;
             }
 
             button {
-                font-size: 1.5rem; /* 調整按鈕大小 */
+                font-size: 1.5rem;
                 padding: 8px;
             }
 
@@ -120,13 +178,17 @@
     </style>
 </head>
 <body>
+    <!-- Link in the top right corner -->
+    <a href="https://sethjesus.github.io/Maincarbon/Maincarbon.html" class="top-right-link" target="_blank">欲知詳情請點擊連結</a>
+
     <div class="header-message">
-        景沛低碳管理方案團隊祝您聖誕節快樂
+        UDM景沛低碳管理方案團隊祝您聖誕節快樂
     </div>
 
+    <!-- Container for carousel content -->
     <div class="card-container">
         <div class="carousel">
-            <!-- 每個圖片和祝賀詞的對應區塊 -->
+            <!-- Carousel Items -->
             <div class="carousel-item">
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M1.jpg?raw=true" alt="聖誕圖1">
                 <p class="message">聖誕節來臨，願你的每一天都充滿喜悅與溫馨。祝你擁有一個美滿幸福的聖誕節，心願成真，平安健康！</p>
@@ -147,27 +209,9 @@
                 <img src="https://github.com/Sethjesus/Photo/blob/main/M5.jpg?raw=true" alt="聖誕圖5">
                 <p class="message">聖誕節是一個傳遞愛與祝福的時刻，願這個聖誕節為你帶來無盡的快樂與幸福，願你在新的一年裡萬事順利！</p>
             </div>
-            <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/M6.jpg?raw=true" alt="聖誕圖6">
-                <p class="message">聖誕的鐘聲已經響起，願你在這個冬季裡收穫溫暖與愛。祝你聖誕快樂，幸福安康！</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/MA.jpg?raw=true" alt="聖誕圖7">
-                <p class="message">聖誕的時刻，願你在愛的包圍中，擁有無盡的喜悅與快樂。願來年一切都如你所願，心想事成！</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/MB.jpg?raw=true" alt="聖誕圖8">
-                <p class="message">聖誕節，是一年中最溫暖的時光。願你在這個季節裡，與家人一起共度難忘的時光，祝你聖誕快樂，心想事成！</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/MC.jpg?raw=true" alt="聖誕圖9">
-                <p class="message">聖誕節是愛與祝福的季節，願這份溫馨與祝福伴隨你，帶給你一年四季的快樂與安康！</p>
-            </div>
-            <div class="carousel-item">
-                <img src="https://github.com/Sethjesus/Photo/blob/main/MD.jpg?raw=true" alt="聖誕圖10">
-                <p class="message">在這個特別的時刻，願你與摯愛的人一起共度美好的聖誕夜，願這份愛與喜悅永遠不變。聖誕快樂！</p>
-            </div>
         </div>
+
+        <!-- Navigation buttons -->
         <button class="prev">←</button>
         <button class="next">→</button>
     </div>
@@ -185,7 +229,7 @@
             document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
         };
 
-        // 監聽按鈕點擊事件
+        // Listen for button click events
         nextButton.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % totalImages;
             updateCarousel();
@@ -196,32 +240,16 @@
             updateCarousel();
         });
 
-        // 實現觸摸移動
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.querySelector('.card-container').addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.querySelector('.card-container').addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) {
-                currentIndex = (currentIndex + 1) % totalImages;
-                updateCarousel();
-            } else if (touchEndX - touchStartX > 50) {
-                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-                updateCarousel();
-            }
-        });
-
-        // 自動切換每3秒一次
+        // Auto change every 3 seconds
         setInterval(() => {
             currentIndex = (currentIndex + 1) % totalImages;
             updateCarousel();
         }, 3000);
 
-        updateCarousel(); // 初始顯示第一張圖片
+        // Add curtain transition when the page loads
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
     </script>
 </body>
 </html>
